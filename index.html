@@ -538,7 +538,7 @@
           </svg>
           <span class="brand-notify-dot" id="brand-notify-dot" title="Morning check-in not logged yet"></span>
         </span>
-        <h1>Nathaniel Young</h1>
+        <h1>Shawn Dobbs</h1>
       </div>
       <div class="brand-rank" id="brand-rank"></div>
       <div class="tag">BRM Workbench · Proof of Concept</div>
@@ -1335,7 +1335,7 @@ function generateICS(client, product){
     'DTSTAMP:'+fmt(now),
     'DTSTART:'+fmt(start),
     'DTEND:'+fmt(end),
-    'SUMMARY:Meeting: Nathaniel Young & '+client.name,
+    'SUMMARY:Meeting: Shawn Dobbs & '+client.name,
     'DESCRIPTION:Discuss '+product+' for '+client.name+'.',
     'LOCATION:'+getFavoriteSpot(client),
     'END:VEVENT','END:VCALENDAR'
@@ -1356,13 +1356,13 @@ function buildOutreachMailto(type, client, product){
   let subject, body;
   if(type==='calendar'){
     subject = `Quick meeting to discuss ${product}`;
-    body = `Hi ${client.name} team,\n\nI think ${product} could be a good fit as your business grows. I've sent over a calendar invite for a quick chat — let me know if the time doesn't work and I'll send another.\n\nBest,\nNathaniel Young`;
+    body = `Hi ${client.name} team,\n\nI think ${product} could be a good fit as your business grows. I've sent over a calendar invite for a quick chat — let me know if the time doesn't work and I'll send another.\n\nBest,\nShawn Dobbs`;
   } else if(type==='zoom'){
     subject = `Zoom call to discuss ${product}?`;
-    body = `Hi ${client.name} team,\n\nI'd love to grab 20 minutes on Zoom to walk through ${product} and see if it's a fit for where your business is headed. Let me know a time that works and I'll send the link.\n\nBest,\nNathaniel Young`;
+    body = `Hi ${client.name} team,\n\nI'd love to grab 20 minutes on Zoom to walk through ${product} and see if it's a fit for where your business is headed. Let me know a time that works and I'll send the link.\n\nBest,\nShawn Dobbs`;
   } else {
     subject = `Meeting at ${spot}?`;
-    body = `Hi ${client.name} team,\n\nWould you be up for meeting at ${spot} sometime this week? I'd like to walk you through ${product} — think it could be a good fit.\n\nBest,\nNathaniel Young`;
+    body = `Hi ${client.name} team,\n\nWould you be up for meeting at ${spot} sometime this week? I'd like to walk you through ${product} — think it could be a good fit.\n\nBest,\nShawn Dobbs`;
   }
   return `mailto:${client.email||''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
@@ -1900,8 +1900,8 @@ function buildAgendaMailto(action, client, timeLabel){
     ? `Confirming our ${timeLabel} meeting`
     : `Need to reschedule our ${timeLabel} meeting`;
   const body = action==='confirm'
-    ? `Hi ${client.name} team,\n\nJust confirming our meeting today at ${timeLabel}. Looking forward to it.\n\nBest,\nNathaniel Young`
-    : `Hi ${client.name} team,\n\nSomething's come up and I need to reschedule our meeting today at ${timeLabel}. Could we find another time this week?\n\nBest,\nNathaniel Young`;
+    ? `Hi ${client.name} team,\n\nJust confirming our meeting today at ${timeLabel}. Looking forward to it.\n\nBest,\nNathaniel Dobbs`
+    : `Hi ${client.name} team,\n\nSomething's come up and I need to reschedule our meeting today at ${timeLabel}. Could we find another time this week?\n\nBest,\nShawn Dobbs`;
   return `mailto:${client.email||''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -2439,7 +2439,7 @@ function generateMeetingICS(client, dateKey, hm, taskTitle){
   return [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Personal BRM Demo//EN','BEGIN:VEVENT',
     'UID:'+uid, 'DTSTAMP:'+fmt(now), 'DTSTART:'+fmt(start), 'DTEND:'+fmt(end),
-    'SUMMARY:'+taskTitle+' — Nathaniel Young & '+client.name,
+    'SUMMARY:'+taskTitle+' — Shawn Dobbs & '+client.name,
     'DESCRIPTION:Proposed meeting regarding: '+taskTitle,
     'END:VEVENT','END:VCALENDAR'
   ].join('\r\n');
@@ -2532,7 +2532,7 @@ function renderMeetingPicker(panelEl, client, seedKey, dueDateKey, meetingTitle)
   panelEl.querySelector(`button[data-nonce="${nonce}"]:not([data-dir])`).onclick = ()=>{
     downloadMeetingICS(client, optA.dateKey, optA.hm, meetingTitle);
     const subject = `Meeting request: ${meetingTitle}`;
-    const body = `Hi ${client.name} team,\n\nCould we find time for: ${meetingTitle}?\n\nOption A: ${fmtSlotDate(optA.dateKey)} at ${fmtTime12(...optA.hm)}\nOption B: ${fmtSlotDate(optB.dateKey)} at ${fmtTime12(...optB.hm)}\n\nEither works on my end — just reply with the one that's better for you and I'll send a calendar invite.\n\nBest,\nNathaniel Young`;
+    const body = `Hi ${client.name} team,\n\nCould we find time for: ${meetingTitle}?\n\nOption A: ${fmtSlotDate(optA.dateKey)} at ${fmtTime12(...optA.hm)}\nOption B: ${fmtSlotDate(optB.dateKey)} at ${fmtTime12(...optB.hm)}\n\nEither works on my end — just reply with the one that's better for you and I'll send a calendar invite.\n\nBest,\nShawn Dobbs`;
     window.location.href = `mailto:${client.email||''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     const statusEl = panelEl.querySelector(`[data-status="${nonce}"]`);
     if(statusEl){
@@ -2925,7 +2925,7 @@ function renderProducts(){
       const client = STATE.clients.find(c=>c.id===btn.dataset.clientId);
       if(!product || !client) return;
       const subject = `A product that might help: ${product.name}`;
-      const body = `Hi ${client.name} team,\n\nBased on your business, I thought ${product.name} could be a good fit:\n\n${product.desc}\n\n${product.use}\n\nHappy to walk you through the details whenever works for you.\n\nBest,\nNathaniel Young`;
+      const body = `Hi ${client.name} team,\n\nBased on your business, I thought ${product.name} could be a good fit:\n\n${product.desc}\n\n${product.use}\n\nHappy to walk you through the details whenever works for you.\n\nBest,\nShawn Dobbs`;
       window.location.href = `mailto:${client.email||''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       const todayStr = new Date().toISOString().slice(0,10);
       if(!STATE.sentInfo) STATE.sentInfo = {};
