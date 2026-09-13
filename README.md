@@ -1,4 +1,4 @@
-# Harbor Ledger — Business Relationship Manager
+# Proxy Sight AR — Business Relationship Manager
 
 A proof-of-concept BRM (Business Relationship Manager) dashboard built to
 demonstrate business banking product knowledge and client relationship
